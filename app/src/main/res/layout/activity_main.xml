@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+    <GridView
+        android:id="@+id/simpleGridView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="97.89"
+        android:footerDividersEnabled="false"
+        android:numColumns="1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/entryAddition"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/addEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/entryAddition"
+            android:layout_alignBottom="@+id/entryAddition"
+            android:layout_toEndOf="@+id/entryAddition"
+            android:layout_toRightOf="@+id/entryAddition"
+            android:text="Add"/>
+
+        <Button
+            android:id="@+id/viewEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/addEntry"
+            android:layout_alignBottom="@+id/addEntry"
+            android:layout_toEndOf="@+id/addEntry"
+            android:layout_toRightOf="@+id/addEntry"
+            android:text="View"/>
+
+
+    </RelativeLayout>
+</LinearLayout>
