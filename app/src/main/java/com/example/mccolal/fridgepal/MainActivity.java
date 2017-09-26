@@ -24,6 +24,18 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+
+/* --- LINKS TO CHECK OUT
+Opening customisable activities
+https://stackoverflow.com/questions/11510672/launch-an-activity-from-android-listview-and-populate-based-on-selection
+https://stackoverflow.com/questions/35542861/click-on-item-in-listview-opens-activity-with-a-list-based-on-the-item-that-was
+
+
+
+
+*/
+
+
 public class MainActivity extends AppCompatActivity {
 
     GridView simpleGrid;
