@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends BaseAdapter {
-    Context context;
+    private Context context;
     private ArrayList<String> list = new ArrayList<String>();
-    LayoutInflater inflter;
+    private LayoutInflater inflter;
 
 
     public CustomAdapter(Context applicationContext, ArrayList<String> listReceived) {
@@ -42,6 +42,8 @@ public class CustomAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return 0;
     }
+
+    
 
 
 

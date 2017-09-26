@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> animalList = new ArrayList<String>();
     ArrayList<String> results = new ArrayList<String>();
-
+    CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickRetrieveStudents(v);
+                onClickAddName(v);
             }
         });
 
-        entryName.setOnClickListener(new View.OnClickListener() {
+        viewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickRetrieveStudents(v);
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), results);
+        customAdapter = new CustomAdapter(getApplicationContext(), results);
         simpleGrid.setAdapter(customAdapter);
 
 
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(ContentProv.NAME, ((EditText) findViewById(R.id.entryAddition)).getText().toString());
 
-        values.put(ContentProv.GRADE, ((EditText) findViewById(R.id.entryAddition)).getText().toString());
 
         Uri uri = getContentResolver().insert(
                 ContentProv.CONTENT_URI, values);
@@ -94,24 +93,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickRetrieveStudents(View view) {
         // Retrieve student records
+        results.clear();
         String URL = "content://com.example.mccolal.fridgepal.ContentProv";
 
-        Uri students = Uri.parse(URL);
-        Cursor c = getContentResolver().query(students, null, null, null, "name");
-        //https://stackoverflow.com/questions/12714701/deprecated-managedquery-issue
+        Uri fridges = Uri.parse(URL);
+        Cursor c = managedQuery(fridges, null, null, null, "name");
 
-
-        if (c!=null && c.getCount()>0) {
-            do {
-                Toast.makeText(this,
+        if (c.moveToFirst()) {
+            do{
+                results.add(c.getString(c.getColumnIndex( ContentProv.NAME)));
+                /*Toast.makeText(this,
                         c.getString(c.getColumnIndex(ContentProv._ID)) +
-                                ", " + c.getString(c.getColumnIndex(ContentProv.NAME)) +
-                                ", " + c.getString(c.getColumnIndex(ContentProv.GRADE)),
-                        Toast.LENGTH_SHORT).show();
+                                ", " +  c.getString(c.getColumnIndex( ContentProv.NAME)),
+                        Toast.LENGTH_SHORT).show();*/
             } while (c.moveToNext());
-        } else {
-            Toast.makeText(this,"c was null", Toast.LENGTH_SHORT);
         }
+        customAdapter.notifyDataSetChanged();
     }
 
 }
