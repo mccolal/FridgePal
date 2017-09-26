@@ -102,10 +102,7 @@ public class MainActivity extends AppCompatActivity {
         if (c.moveToFirst()) {
             do{
                 results.add(c.getString(c.getColumnIndex( ContentProv.NAME)));
-                /*Toast.makeText(this,
-                        c.getString(c.getColumnIndex(ContentProv._ID)) +
-                                ", " +  c.getString(c.getColumnIndex( ContentProv.NAME)),
-                        Toast.LENGTH_SHORT).show();*/
+                //Toast.makeText(this,c.getString(c.getColumnIndex(ContentProv._ID)) + ", " +  c.getString(c.getColumnIndex( ContentProv.NAME)),Toast.LENGTH_SHORT).show();
             } while (c.moveToNext());
         }
         customAdapter.notifyDataSetChanged();

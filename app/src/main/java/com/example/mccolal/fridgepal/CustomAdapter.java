@@ -31,7 +31,7 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return i;
     }
 
     public List<String> getData(){
@@ -43,30 +43,48 @@ public class CustomAdapter extends BaseAdapter {
         return 0;
     }
 
-    
+
 
 
 
     @Override
-    public View getView(final int position, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.activity_list_view, null);
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
+        ViewHolder holder;
 
-        TextView item = (TextView) view.findViewById(R.id.textview);
-        item.setText(list.get(position));
+        if (convertView == null) {
+            convertView = inflter.inflate(R.layout.activity_list_view, viewGroup, false);
 
-        Button btn1 = (Button)view.findViewById(R.id.button2);
+            holder = new ViewHolder();
+            holder.btnDelete = (Button) convertView.findViewById(R.id.button2);
+            holder.textView = (TextView) convertView.findViewById(R.id.textview);
 
-        btn1.setOnClickListener(new View.OnClickListener(){
+
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.textView.setText(list.get(position));
+
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
 
+
+                Button a = (Button) v.findViewById(R.id.button2);
+                list.remove(position);
                 notifyDataSetChanged();
+
+
             }
         });
 
+        return convertView;
+    }
 
-        return view;
+    private static class ViewHolder {
+        TextView textView;
+        Button btnDelete;
     }
 }
